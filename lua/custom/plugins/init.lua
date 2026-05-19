@@ -1,7 +1,5 @@
--- You can add your own plugins here or in other files in this directory!
---  I promise not to create any merge conflicts in this directory :)
---
--- See the kickstart.nvim README for more information
+-- Custom plugins
+-- Add your own plugins here using vim.pack.add.
 
 vim.pack.add { 'https://github.com/tpope/vim-fugitive' }
 
