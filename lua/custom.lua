@@ -28,12 +28,8 @@ vim.api.nvim_set_keymap('n', 'N', 'Nzt', { noremap = true, silent = true })
 
 -- ── Clangd LSP (only when compile_commands.json is present) ──────────
 if vim.fn.filereadable 'compile_commands.json' == 1 then
-  local lspconfig = require 'lspconfig'
-  lspconfig.clangd.setup {
-    init = function()
-      vim.g.coq_settings = { auto_start = true }
-    end,
-  }
+  vim.lsp.config('clangd', {})
+  vim.lsp.enable 'clangd'
 end
 
 -- ── Filetype overrides for XC16 GCC source tree ──────────────────────
