@@ -2,6 +2,7 @@
 -- Add your own plugins here using vim.pack.add.
 
 vim.pack.add { 'https://github.com/tpope/vim-fugitive' }
+vim.pack.add { 'https://github.com/sindrets/diffview.nvim' }
 
 -- Iterate over all Lua files in the plugins directory and load them
 local plugins_dir = vim.fs.joinpath(vim.fn.stdpath 'config', 'lua', 'custom', 'plugins')
