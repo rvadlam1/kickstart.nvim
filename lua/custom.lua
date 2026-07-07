@@ -42,6 +42,26 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
   end,
 })
 
+-- Do wrap when doing nvim -d. `-d` sets 'diff' before this file is sourced.
+local function wrap_diff_windows()
+  vim.cmd 'windo if &diff | setlocal wrap linebreak | endif'
+end
+
+wrap_diff_windows()
+vim.api.nvim_create_autocmd('DiffUpdated', {
+  callback = function()
+    vim.schedule(wrap_diff_windows)
+  end,
+})
+vim.api.nvim_create_autocmd('OptionSet', {
+  pattern = 'diff',
+  callback = function()
+    if vim.v.option_new == '1' or vim.v.option_new == 'true' then
+      wrap_diff_windows()
+    end
+  end,
+})
+
 -- .def files in the same tree → treat as C
 vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
   pattern = '*/src/xc16_gcc_831/gcc/gcc/config/*/*.def',
